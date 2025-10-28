@@ -1,0 +1,40 @@
+name: 🚀 Build e Release Automático
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧭 Checkout código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # importante para semantic-release
+
+      - name: 🟡 Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 📦 Instalar dependências
+        run: npm ci
+
+      - name: 🧠 Rodar semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: npx semantic-release
+
+      - name: 🏗️ Instalar dependências para build Windows
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            wine mono-devel zip unzip p7zip-full
+
+      - name: 🧱 Build e publicar app
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: npm run publish:app

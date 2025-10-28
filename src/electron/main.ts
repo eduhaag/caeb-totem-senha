@@ -1,6 +1,7 @@
-import { app, BrowserWindow, dialog } from "electron";
+import { app, BrowserWindow, dialog, ipcMain } from "electron";
 import { join } from "path";
 import { autoUpdater } from 'electron-updater'
+import { copyFileSync, existsSync, readFileSync, writeFileSync } from "fs";
 
 import "./api";
 
@@ -8,6 +9,34 @@ const isDev = process.env.DEV != undefined;
 const isPreview = process.env.PREVIEW != undefined;
 
 let mainWindow: BrowserWindow | null = null;
+
+function getConfigFilePath() {
+  // caminho do arquivo de config na pasta de usuário
+  return join(app.getPath("userData"), "config.json");
+}
+
+function getDefaultConfigPath() {
+  // caminho do arquivo de config padrão empacotado
+  return join(__dirname, "../config.json");
+}
+
+export function loadConfig() {
+  const userConfigPath = getConfigFilePath();
+
+  // Se ainda não existe no userData, copia o padrão
+  if (!existsSync(userConfigPath)) {
+    copyFileSync(getDefaultConfigPath(), userConfigPath);
+  }
+
+  // Lê sempre a versão da pasta userData
+  const data = readFileSync(userConfigPath, "utf8");
+  return JSON.parse(data);
+}
+
+export function saveConfig(newConfig: any) {
+  const userConfigPath = getConfigFilePath();
+  writeFileSync(userConfigPath, JSON.stringify(newConfig, null, 2));
+}
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -31,6 +60,16 @@ function createWindow() {
 
  
 }
+
+
+ipcMain.handle("get-config", () => {
+  return loadConfig();
+});
+
+ipcMain.handle("save-config", (_, newConfig) => {
+  saveConfig(newConfig);
+  return true;
+});
 
 
 autoUpdater.autoDownload = false;          // não baixa automaticamente

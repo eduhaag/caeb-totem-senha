@@ -25,6 +25,7 @@
       "dist/**",
       "dist-electron/**",
       "resources/**",
+      "config.json",
       "package.json"
     ],
     "extraMetadata": {

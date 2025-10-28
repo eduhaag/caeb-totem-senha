@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/eduhaag/caeb-totem-senha/compare/v1.1.4...v1.1.5) (2025-10-28)
+
+
+### Bug Fixes
+
+* Ocultar o menu em tela cheia ([ed8e221](https://github.com/eduhaag/caeb-totem-senha/commit/ed8e221b84821cd4621eb2daa3d00e68c87a905d))
+
 ## [1.1.4](https://github.com/eduhaag/caeb-totem-senha/compare/v1.1.3...v1.1.4) (2025-10-28)
 
 

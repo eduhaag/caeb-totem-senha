@@ -25,7 +25,7 @@ export default function App() {
         <img src={Logo} alt="Logo CAEB" />
        <div>
          <h2>Aguardando a leitura...</h2>
-          <p>Por favor, aproxime o QR Code do leitor AGORA.</p>
+          <p>Por favor, aproxime o QR Code do leitor.</p>
        </div>
       </section>
     </main>

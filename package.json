@@ -12,7 +12,8 @@
     "build:main": "tsc -p tsconfig-electron.json",
     "build": "npm run build:renderer && npm run build:main && electron-builder --win portable",
     "semantic-release": "semantic-release",
-    "publish:app": "electron-builder --win nsis --publish always"
+    "build:app": "npm run build:renderer && npm run build:main",
+    "publish:app": "npm run build:app && electron-builder --win nsis --publish always"
   },
   "build": {
     "appId": "com.seuempresa.totemsenhas",

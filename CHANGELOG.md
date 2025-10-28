@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/eduhaag/caeb-totem-senha/compare/v1.1.7...v1.2.0) (2025-10-28)
+
+
+### Features
+
+* atualização automática ([8c6a7bf](https://github.com/eduhaag/caeb-totem-senha/commit/8c6a7bf7dadcf6291f11f3313f15fa60a445bb3a))
+* atualizado icone ([561a03d](https://github.com/eduhaag/caeb-totem-senha/commit/561a03d1dcf6d29a18a99b3b7e985baf4aaa2db7))
+* Parametrização por meio do arquivo config.json ([d713d24](https://github.com/eduhaag/caeb-totem-senha/commit/d713d24a52c30a4bcfd79515bcaf872def8749be))
+
 ## [1.1.7](https://github.com/eduhaag/caeb-totem-senha/compare/v1.1.6...v1.1.7) (2025-10-28)
 
 

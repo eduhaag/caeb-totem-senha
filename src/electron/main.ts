@@ -40,7 +40,7 @@ app.whenReady().then(() => {
   });
 
    // Verifica e baixa atualizações
-  autoUpdater.checkForUpdatesAndNotify()
+  autoUpdater.checkForUpdates()
 });
 
 autoUpdater.on('update-available', (info) => {

@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+release
+dist-electron
 
 # Editor directories and files
 .vscode/*

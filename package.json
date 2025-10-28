@@ -1,15 +1,54 @@
 {
-  "name": "electron-vite-ts-react-template",
+  "name": "totem-senha-caeb",
   "private": true,
-  "version": "0.0.0",
-  "main": "dist/main.js",
+  "version": "1.0.3",
+  "description": "Aplicação de Totem de Senhas",
+  "author": "Eduardo Haag - CAEB",
+  "main": "dist-electron/main.js",
   "scripts": {
     "dev": "concurrently \"vite\" \"cross-env DEV= tsc-watch -p tsconfig-electron.json --onSuccess \\\"electron .\\\"\"",
     "preview": "vite build && tsc -p tsconfig-electron.json && cross-env PREVIEW= electron .",
-    "build": "vite build && tsc -p tsconfig-electron.json && electron-forge make"
+    "build:renderer": "vite build --mode production",
+    "build:main": "tsc -p tsconfig-electron.json",
+    "build": "npm run build:renderer && npm run build:main && electron-builder --win portable",
+    "publish": "dotenv npx electron-builder --win nsis --publish always"
+  },
+  "build": {
+    "appId": "com.seuempresa.totemsenhas",
+    "productName": "Totem de Senhas",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**",
+      "dist-electron/**",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "dist-electron/main.js"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "eduhaag",
+        "repo": "caeb-totem-senha",
+        "releaseType": "release"
+      }
+    ],
+    "asar": true,
+    "win": {
+      "target": "nsis",
+      "artifactName": "TotemSenhas-${version}-Setup.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
+    "electron-updater": "^6.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -24,7 +63,9 @@
     "@vitejs/plugin-react": "^3.0.0",
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
+    "dotenv-cli": "^10.0.0",
     "electron": "^22.2.0",
+    "electron-builder": "^26.0.12",
     "tsc-watch": "^6.0.0",
     "typescript": "^4.9.3",
     "vite": "^4.0.0"

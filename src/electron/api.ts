@@ -1,11 +1,14 @@
 import { ipcMain, IpcMainInvokeEvent } from "electron";
 
 ipcMain.handle(
-  "node-version",
-  (event: IpcMainInvokeEvent, msg: string): string => {
-    console.log(event);
-    console.log(msg);
-
-    return process.versions.node;
+  "read-qr",
+  async (event: IpcMainInvokeEvent, id: string) => {
+   try { 
+   console.log("Lendo QR para ID:", id);    
+    return { ok: true } 
+  } 
+  catch (err: any) { 
+    return { ok: false, error: err?.message || String(err) } 
+  } 
   }
 );

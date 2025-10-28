@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from "electron";
 import { join } from "path";
+import { autoUpdater } from 'electron-updater'
 
 import "./api";
 
@@ -8,8 +9,7 @@ const isPreview = process.env.PREVIEW != undefined;
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    fullscreen: true,
     webPreferences: {
       preload: join(__dirname, "preload.js"),
     },
@@ -37,7 +37,16 @@ app.whenReady().then(() => {
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
+
+   // Verifica e baixa atualizações
+  autoUpdater.checkForUpdatesAndNotify()
 });
+
+autoUpdater.on('update-downloaded', () => {
+  autoUpdater.quitAndInstall()
+})
+
+
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

@@ -1,8 +1,8 @@
 import { contextBridge, ipcRenderer } from "electron";
 
 export const backend = {
-  nodeVersion: async (msg: string): Promise<string> =>
-    await ipcRenderer.invoke("node-version", msg),
+  readQR: async (id: string): Promise<{ok:boolean, error?:any}> =>
+    await ipcRenderer.invoke("read-qr", id),
 };
 
 contextBridge.exposeInMainWorld("backend", backend);

@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/eduhaag/caeb-totem-senha/compare/v1.1.6...v1.1.7) (2025-10-28)
+
+
+### Bug Fixes
+
+* teste de atualização ([ec97fda](https://github.com/eduhaag/caeb-totem-senha/commit/ec97fda5d64856c98a0fca2a72decd28e02e215a))
+
 ## [1.1.6](https://github.com/eduhaag/caeb-totem-senha/compare/v1.1.5...v1.1.6) (2025-10-28)
 
 

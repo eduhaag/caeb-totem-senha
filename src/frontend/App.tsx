@@ -35,14 +35,6 @@ export default function App() {
     })
   }, [])
 
-  useEffect(() => {
-  async function carregarConfig() {
-    const cfg = await backend.getConfig();
-    console.log("Config atual:", cfg);
-    alert("config" + JSON.stringify(cfg));
-  }
-  carregarConfig();
-}, []);
 
   const handlePrint = async () => {
     setLoading(true)

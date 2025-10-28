@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, dialog } from "electron";
 import { join } from "path";
 import { autoUpdater } from 'electron-updater'
 
@@ -42,8 +42,31 @@ app.whenReady().then(() => {
   autoUpdater.checkForUpdatesAndNotify()
 });
 
+autoUpdater.on('update-available', (info) => {
+  dialog.showMessageBox({
+    type: 'info',
+    title: 'Atualização disponível',
+    message: `Uma nova versão (${info.version}) está disponível.`,
+    detail: 'Deseja atualizar agora?',
+    buttons: ['Sim', 'Depois']
+  }).then(result => {
+    if (result.response === 0) { // "Sim"
+      autoUpdater.downloadUpdate()
+    }
+  })
+})
+
 autoUpdater.on('update-downloaded', () => {
-  autoUpdater.quitAndInstall()
+  dialog.showMessageBox({
+    type: 'info',
+    title: 'Atualização pronta',
+    message: 'A atualização foi baixada. Reiniciar agora?',
+    buttons: ['Reiniciar', 'Depois']
+  }).then(result => {
+    if (result.response === 0) {
+      autoUpdater.quitAndInstall()
+    }
+  })
 })
 
 

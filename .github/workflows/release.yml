@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: 🧭 Checkout código
@@ -33,9 +33,15 @@ jobs:
 
       - name: 🏗️ Instalar dependências para build Windows
         run: |
+          sudo dpkg --add-architecture i386
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            wine mono-devel zip unzip p7zip-full
+            wine-stable \
+            wine32:i386 \
+            mono-devel \
+            zip \
+            unzip \
+            p7zip-full
       - name: 🧱 Build e publicar app
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}

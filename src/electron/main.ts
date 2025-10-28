@@ -13,6 +13,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     fullscreen: true,
     autoHideMenuBar: true,
+    icon: join(__dirname, "../resources/icon.ico"),
     webPreferences: {
       preload: join(__dirname, "preload.js"),
     },

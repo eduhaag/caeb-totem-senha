@@ -7,8 +7,10 @@ import "./api";
 const isDev = process.env.DEV != undefined;
 const isPreview = process.env.PREVIEW != undefined;
 
+let mainWindow: BrowserWindow | null = null;
+
 function createWindow() {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     fullscreen: true,
     autoHideMenuBar: true,
     webPreferences: {
@@ -25,11 +27,14 @@ function createWindow() {
   } else {
     mainWindow.loadFile("dist/index.html");
   }
+
+ 
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
+
+autoUpdater.autoDownload = false;          // não baixa automaticamente
+autoUpdater.autoInstallOnAppQuit = false;
+
 app.whenReady().then(() => {
   createWindow();
 
@@ -52,10 +57,20 @@ autoUpdater.on('update-available', (info) => {
     buttons: ['Sim', 'Depois']
   }).then(result => {
     if (result.response === 0) { // "Sim"
+      mainWindow?.webContents.send("update");
       autoUpdater.downloadUpdate()
+    }else{
+      mainWindow?.webContents.send("waiting");
     }
+
+
   })
 })
+
+autoUpdater.on("update-not-available", () => {
+  mainWindow?.webContents.send("waiting");
+});
+
 
 autoUpdater.on('update-downloaded', () => {
   dialog.showMessageBox({
@@ -66,9 +81,21 @@ autoUpdater.on('update-downloaded', () => {
   }).then(result => {
     if (result.response === 0) {
       autoUpdater.quitAndInstall()
+    }else{
+      mainWindow?.webContents.send("waiting");
     }
   })
 })
+
+// Quando o download progride
+autoUpdater.on("download-progress", (progress) => {
+  mainWindow?.webContents.send("update-progress", progress);
+});
+
+autoUpdater.on("update-downloaded", () => {
+  mainWindow?.webContents.send("waiting");
+});
+
 
 
 

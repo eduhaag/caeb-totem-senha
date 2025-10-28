@@ -1,3 +1,13 @@
+## [1.1.2](https://github.com/eduhaag/caeb-totem-senha/compare/v1.1.1...v1.1.2) (2025-10-28)
+
+
+### Bug Fixes
+
+* deploy ([6b67aae](https://github.com/eduhaag/caeb-totem-senha/commit/6b67aae030d15832f07e1e262fbf90515aefb60c))
+* deploy ([f455657](https://github.com/eduhaag/caeb-totem-senha/commit/f455657a01f71c450b1de14f1135e4599d87ff08))
+* deploy ([b56ae30](https://github.com/eduhaag/caeb-totem-senha/commit/b56ae300389d8ce60dda0e12e22f63374ca72f13))
+* deploy ([ce32dbc](https://github.com/eduhaag/caeb-totem-senha/commit/ce32dbc431ccbac40e51840ae0fd007e5daed5b3))
+
 ## [1.1.1](https://github.com/eduhaag/caeb-totem-senha/compare/v1.1.0...v1.1.1) (2025-10-28)
 
 

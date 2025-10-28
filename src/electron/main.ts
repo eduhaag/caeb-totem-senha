@@ -10,6 +10,7 @@ const isPreview = process.env.PREVIEW != undefined;
 function createWindow() {
   const mainWindow = new BrowserWindow({
     fullscreen: true,
+    autoHideMenuBar: true,
     webPreferences: {
       preload: join(__dirname, "preload.js"),
     },

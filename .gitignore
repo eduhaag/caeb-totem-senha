@@ -29,3 +29,5 @@ dist-electron
 out/
 
 .github
+
+test-leitor.text

@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/eduhaag/caeb-totem-senha/compare/v1.2.0...v1.3.0) (2025-11-05)
+
+
+### Features
+
+* Emissão de senha concluida ([53b016a](https://github.com/eduhaag/caeb-totem-senha/commit/53b016aa7ec62fe4548919dcb4d5604e738397c9))
+
 # [1.2.0](https://github.com/eduhaag/caeb-totem-senha/compare/v1.1.7...v1.2.0) (2025-10-28)
 
 

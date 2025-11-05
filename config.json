@@ -1,5 +1,9 @@
 {
   "serverURL": "https://siebserver.com/api",
-  "kioskMode": true,
-  "printer": "EPSON TM-T20II"
+  "serverKey": "teste",
+  "printer": "/home/eduardo/virtual_printer_output.txt",
+  "mode": "development",
+  "scannerSound": true,
+  "printerTimeout": 5000,
+  "messagesTimeout": 5000
 }
